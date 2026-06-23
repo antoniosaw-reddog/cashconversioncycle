@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Conversion Cycle & Cash Flow Analyzer - Red Dog Advisory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <h1 class="logo">🐕 Red Dog Advisory</h1>
+                <p class="tagline">Cash Conversion Cycle & Cash Flow Analyzer</p>
+            </div>
+            <div class="website-link">
+                <a href="https://www.reddogadvisory.com" target="_blank">www.reddogadvisory.com</a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="calculator-wrapper">
+                <!-- Cash Conversion Cycle Section -->
+                <section class="calculator-section">
+                    <h2>Cash Conversion Cycle Calculator</h2>
+                    <div class="info-box">
+                        <p>The Cash Conversion Cycle (CCC) measures how long your cash is tied up in operations.</p>
+                    </div>
+
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="daysInventory">Days Inventory Outstanding (DIO)</label>
+                            <input type="number" id="daysInventory" placeholder="e.g., 30" value="30">
+                            <span class="help-text">Average days inventory sits before sale</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="daysSales">Days Sales Outstanding (DSO)</label>
+                            <input type="number" id="daysSales" placeholder="e.g., 45" value="45">
+                            <span class="help-text">Average days to collect payment from customers</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="daysPayable">Days Payable Outstanding (DPO)</label>
+                            <input type="number" id="daysPayable" placeholder="e.g., 30" value="30">
+                            <span class="help-text">Average days to pay suppliers</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-calculate" onclick="calculateCCC()">Calculate CCC</button>
+
+                    <div class="result-box" id="cccResult" style="display:none;">
+                        <h3>Cash Conversion Cycle Result</h3>
+                        <div class="result-item">
+                            <span class="result-label">CCC (Days):</span>
+                            <span class="result-value" id="cccValue">0</span>
+                        </div>
+                        <div class="result-interpretation" id="cccInterpretation"></div>
+                    </div>
+                </section>
+
+                <!-- Cash Flow Analysis Section -->
+                <section class="calculator-section">
+                    <h2>Cash Flow Analyzer</h2>
+                    <div class="info-box">
+                        <p>Analyze your business cash inflows and outflows to understand your cash position.</p>
+                    </div>
+
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="monthlyRevenue">Monthly Revenue ($)</label>
+                            <input type="number" id="monthlyRevenue" placeholder="e.g., 50000" value="50000">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="costOfGoodsSold">Cost of Goods Sold ($)</label>
+                            <input type="number" id="costOfGoodsSold" placeholder="e.g., 20000" value="20000">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="operatingExpenses">Operating Expenses ($)</label>
+                            <input type="number" id="operatingExpenses" placeholder="e.g., 15000" value="15000">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="debtPayments">Debt Payments ($)</label>
+                            <input type="number" id="debtPayments" placeholder="e.g., 5000" value="5000">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="capitalExpenditure">Capital Expenditure ($)</label>
+                            <input type="number" id="capitalExpenditure" placeholder="e.g., 2000" value="2000">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="taxPayments">Tax Payments ($)</label>
+                            <input type="number" id="taxPayments" placeholder="e.g., 5000" value="5000">
+                        </div>
+                    </div>
+
+                    <button class="btn-calculate" onclick="calculateCashFlow()">Analyze Cash Flow</button>
+
+                    <div class="result-box" id="cashFlowResult" style="display:none;">
+                        <h3>Cash Flow Analysis</h3>
+                        <div class="result-item">
+                            <span class="result-label">Operating Cash Flow:</span>
+                            <span class="result-value" id="operatingCF">$0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Net Cash Flow:</span>
+                            <span class="result-value" id="netCF">$0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Gross Profit Margin:</span>
+                            <span class="result-value" id="profitMargin">0%</span>
+                        </div>
+                        <div class="cash-position" id="cashPosition"></div>
+                    </div>
+                </section>
+
+                <!-- Summary Dashboard -->
+                <section class="calculator-section">
+                    <h2>Financial Summary Dashboard</h2>
+                    <button class="btn-calculate" onclick="generateSummary()">Generate Summary</button>
+
+                    <div class="summary-dashboard" id="summaryDashboard" style="display:none;">
+                        <div class="summary-card">
+                            <h4>Working Capital Status</h4>
+                            <p id="workingCapitalStatus">-</p>
+                        </div>
+                        <div class="summary-card">
+                            <h4>Cash Flow Health</h4>
+                            <p id="cashFlowHealth">-</p>
+                        </div>
+                        <div class="summary-card">
+                            <h4>Key Recommendation</h4>
+                            <p id="keyRecommendation">-</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reset Button -->
+                <div class="reset-section">
+                    <button class="btn-reset" onclick="resetAll()">Reset All</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Red Dog Advisory. All rights reserved.</p>
+            <p>Professional Business Financial Analysis Tools</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
